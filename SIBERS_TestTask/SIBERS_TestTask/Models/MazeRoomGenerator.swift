@@ -22,4 +22,5 @@ enum SomeRoom {
     case empty
     case withKey
     case withTreasure
+    case withArtifact
 }

@@ -28,6 +28,8 @@ class MazeRoomViewController: UIViewController, UIAlertViewDelegate {
     @IBOutlet weak var dropArtifactButton: UIButton!
     @IBOutlet weak var discardArtifactButton: UIButton!
     
+    @IBOutlet weak var stepsCountLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,49 +68,47 @@ class MazeRoomViewController: UIViewController, UIAlertViewDelegate {
     
     @IBAction func didTapUseButton(_ sender: Any) {
         let artifacts = model.artifactStorage
-
+        
         if let selectedItem = currentSelected {
             if artifacts[selectedItem].type == .usable {
-//                model.stepsCounter += artifacts[selectedItem].bonusSteps
                 model.updateSteps(artifacts[selectedItem].bonusSteps, selectedItem)
                 updateRoomView()
             }
             else if artifacts[selectedItem].type == .key {
                 let currentCoordinates = model.currentCoordinates
                 if model.map[currentCoordinates.0][currentCoordinates.1] == .withTreasure {
-                    let alert = UIAlertController(title: "Alert", message: "You won!", preferredStyle: .alert)
-//                    alert.addAction(UIAlertAction(title: "Great", style: .default, handler: { action in
-//                        switch action.style{
-//                            case .default:
-//                            print("default")
-//
-//                            case .cancel:
-//                            print("cancel")
-//
-//                            case .destructive:
-//                            print("destructive")
-//
-//                        }
-//                    }))
-                    self.present(alert, animated: true, completion: nil)
+                    showNewGameAlert()
                 }
             }
         }
     }
     
     @IBAction func didTapDropButton(_ sender: Any) {
+        let currentCoordinates = model.currentCoordinates
+        if model.map[currentCoordinates.0][currentCoordinates.1] == .empty
+            && model.map[currentCoordinates.0][currentCoordinates.1] != .withArtifact {
+            if let selectedItem = currentSelected  {
+                model.dropArtifact(selectedItem)
+                updateRoomView()
+            }
+        }
     }
     
     @IBAction func didTapDiscardButton(_ sender: Any) {
+        if let selectedItem = currentSelected {
+            model.discardArtifact(selectedItem)
+            updateRoomView()
+        }
     }
     
-    @IBOutlet weak var stepsCountLabel: UILabel!
-    
-    
-    
+    func showNewGameAlert() {
+        let alert = UIAlertController(title: "Alert", message: "You won!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "New game", style: .default, handler: { [weak self] _ in
+            self?.model.restartGame()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
-
-// MARK: - View configuration
 
 private extension MazeRoomViewController {
     
@@ -201,6 +201,11 @@ extension MazeRoomViewController: ModelDelegate {
         }
         
         stepsCountLabel.text = "Steps left: \(model.stepsCounter)"
+        
+        if let artifact = model.getArtifact() {
+            artifactButton.isHidden = false
+            artifactButton.setImage(UIImage(named: artifact.image), for: .normal)
+        }
     }
     
     func updateViewOfArtifactStorafe() {
@@ -210,9 +215,21 @@ extension MazeRoomViewController: ModelDelegate {
         }
         artifactStorageCollectionView.reloadData()
     }
+    
+    func updateArtifactButton(_ imageName: String) {
+        artifactButton.isHidden = false
+        artifactButton.setImage(UIImage(named: imageName), for: .normal)
+        artifactStorageCollectionView.reloadData()
+    }
+    
+    func gameOver() {
+        showNewGameAlert()
+    }
+    
+    func resetRoomView() {
+        artifactButton.isHidden = true
+    }
 }
-
-// MARK: - UICollectionViewDataSource & UICollectionViewDelegate
 
 extension MazeRoomViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -239,7 +256,6 @@ extension MazeRoomViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        // For remove previously selection
         if previousSelected != nil{
             if let cell = collectionView.cellForItem(at: previousSelected!){
                 cell.backgroundColor = UIColor.clear
@@ -250,33 +266,6 @@ extension MazeRoomViewController: UICollectionViewDataSource, UICollectionViewDe
         
         artifactStorageCollectionView.reloadData()
     }
-    
-    
-    
-    //    func setBackgroundSelected(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! ItemCollectionViewCell
-    //
-    //        // To set the selected cell background color here
-    //        if currentSelected != nil && currentSelected == indexPath.row {
-    //            cell.backgroundColor = UIColor.green
-    //        }
-    //        else {
-    //            cell.backgroundColor = UIColor.yellow
-    //        }
-    //        return cell
-    //    }
-    //
-    //    func removeBackgroundSelected(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    //        // For remove previously selection
-    //        if previousSelected != nil{
-    //            if let cell = collectionView.cellForItem(at: previousSelected!){
-    //                cell.backgroundColor = UIColor.yellow
-    //            }
-    //        }
-    //        currentSelected = indexPath.row
-    //        previousSelected = indexPath
-    //        artifactStorageCollectionView.reloadData()
-    //    }
 }
 
 

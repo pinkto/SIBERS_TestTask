@@ -21,10 +21,22 @@ class MazeRoomModel {
         Artifact(image:"mushroom.png", info: "+5 Stp", type: .usable, bonusSteps: 5),
         Artifact(image: "stone.png", info: "Nth", type: .notUsable, bonusSteps: 0)
     ]
+    var artifactsOnMap: [ArtifactOnMap] = []
+    
+    init(x: Int, y: Int) {
+        self.x = x
+        self.y = y
+        self.stepsCounter = 20
+    }
     
     //var buttonTapped: MazeRoomViewController = MazeRoomViewController()
     func updateCoordinates(buttonTapped: ButtonTapped) {
         stepsCounter -= 1
+        
+        if stepsCounter == 0 {
+            delegate?.gameOver()
+        }
+        
         if buttonTapped == .down {
             x += 1
             delegate?.updateRoomView()
@@ -50,7 +62,22 @@ class MazeRoomModel {
                 map[currentCoordinates.0][currentCoordinates.1] = .empty
                 delegate?.updateViewOfArtifactStorafe()
             }
+            
         }
+    }
+    
+    func discardArtifact(_ id: Int) {
+        artifactStorage.remove(at: id)
+        delegate?.updateViewOfArtifactStorafe()
+    }
+    
+    func dropArtifact(_ id: Int) {
+        map[currentCoordinates.0][currentCoordinates.1] = .withArtifact
+        artifactsOnMap.append(ArtifactOnMap(
+            artifact: artifactStorage[id], x: currentCoordinates.0, y: currentCoordinates.1
+        ))
+        delegate?.updateArtifactButton(artifactStorage[id].image)
+        artifactStorage.remove(at: id)
     }
     
     func updateSteps(_ steps: Int, _ id: Int) {
@@ -59,10 +86,24 @@ class MazeRoomModel {
         delegate?.updateViewOfArtifactStorafe()
     }
     
-    init(x: Int, y: Int) {
-        self.x = x
-        self.y = y
-        self.stepsCounter = 20
+    func getArtifact() -> Artifact? {
+        let artifact = artifactsOnMap.first { $0.x == currentCoordinates.0 && $0.y == currentCoordinates.1 }
+        return artifact?.artifact
     }
     
+    func restartGame() {
+        x = 0
+        y = 0
+        map = MazeRoomGenerator.generateMap()
+        artifactsOnMap.removeAll()
+        stepsCounter = 20
+        delegate?.updateRoomView()
+        delegate?.resetRoomView()
+    }
+}
+
+struct ArtifactOnMap {
+    let artifact: Artifact
+    let x: Int
+    let y: Int
 }

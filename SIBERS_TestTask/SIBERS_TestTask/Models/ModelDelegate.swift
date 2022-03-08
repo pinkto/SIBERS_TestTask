@@ -10,4 +10,7 @@ import Foundation
 protocol ModelDelegate: AnyObject {
     func updateRoomView()
     func updateViewOfArtifactStorafe()
+    func updateArtifactButton(_ imageName: String)
+    func gameOver()
+    func resetRoomView()
 }
