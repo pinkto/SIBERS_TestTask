@@ -9,4 +9,5 @@ import Foundation
 
 protocol ModelDelegate: AnyObject {
     func updateRoomView()
+    func updateViewOfArtifactStorafe()
 }

@@ -14,12 +14,14 @@
 		D1EF458427D3C0EB0000A286 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1EF458327D3C0EB0000A286 /* Assets.xcassets */; };
 		D1EF458727D3C0EB0000A286 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1EF458527D3C0EB0000A286 /* LaunchScreen.storyboard */; };
 		D1EF458F27D3C1520000A286 /* MazeRoomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1EF458E27D3C1520000A286 /* MazeRoomView.xib */; };
-		D1EF459F27D5ABDF0000A286 /* MazeRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF459E27D5ABDF0000A286 /* MazeRoomView.swift */; };
 		D1EF45A127D5AD250000A286 /* MazeRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF45A027D5AD250000A286 /* MazeRoomViewController.swift */; };
 		D1EF45A427D5B09B0000A286 /* MazeRoomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF45A327D5B09B0000A286 /* MazeRoomGenerator.swift */; };
 		D1EF45A727D62C620000A286 /* MazeRoomViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1EF45A627D62C620000A286 /* MazeRoomViewController.storyboard */; };
 		D1EF45A927D63AE00000A286 /* MazeRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF45A827D63AE00000A286 /* MazeRoomModel.swift */; };
 		D1EF45AB27D63DE00000A286 /* ModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF45AA27D63DE00000A286 /* ModelDelegate.swift */; };
+		D1EF45AE27D731DA0000A286 /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EF45AC27D731DA0000A286 /* ItemCollectionViewCell.swift */; };
+		D1EF45AF27D731DA0000A286 /* ItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1EF45AD27D731DA0000A286 /* ItemCollectionViewCell.xib */; };
+		D1EF45B327D760B40000A286 /* File.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = D1EF45B227D760B40000A286 /* File.stringsdict */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,12 +34,14 @@
 		D1EF458627D3C0EB0000A286 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1EF458827D3C0EB0000A286 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1EF458E27D3C1520000A286 /* MazeRoomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MazeRoomView.xib; sourceTree = "<group>"; };
-		D1EF459E27D5ABDF0000A286 /* MazeRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeRoomView.swift; sourceTree = "<group>"; };
 		D1EF45A027D5AD250000A286 /* MazeRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeRoomViewController.swift; sourceTree = "<group>"; };
 		D1EF45A327D5B09B0000A286 /* MazeRoomGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeRoomGenerator.swift; sourceTree = "<group>"; };
 		D1EF45A627D62C620000A286 /* MazeRoomViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MazeRoomViewController.storyboard; sourceTree = "<group>"; };
 		D1EF45A827D63AE00000A286 /* MazeRoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeRoomModel.swift; sourceTree = "<group>"; };
 		D1EF45AA27D63DE00000A286 /* ModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDelegate.swift; sourceTree = "<group>"; };
+		D1EF45AC27D731DA0000A286 /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		D1EF45AD27D731DA0000A286 /* ItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		D1EF45B227D760B40000A286 /* File.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = File.stringsdict; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,7 @@
 				D1EF457A27D3C0EA0000A286 /* AppDelegate.swift */,
 				D1EF457C27D3C0EA0000A286 /* SceneDelegate.swift */,
 				D1EF457E27D3C0EA0000A286 /* ViewController.swift */,
+				D1EF45B227D760B40000A286 /* File.stringsdict */,
 				D1EF458027D3C0EA0000A286 /* Main.storyboard */,
 				D1EF458327D3C0EB0000A286 /* Assets.xcassets */,
 				D1EF458527D3C0EB0000A286 /* LaunchScreen.storyboard */,
@@ -97,8 +102,9 @@
 			isa = PBXGroup;
 			children = (
 				D1EF458E27D3C1520000A286 /* MazeRoomView.xib */,
-				D1EF459E27D5ABDF0000A286 /* MazeRoomView.swift */,
 				D1EF45A627D62C620000A286 /* MazeRoomViewController.storyboard */,
+				D1EF45AC27D731DA0000A286 /* ItemCollectionViewCell.swift */,
+				D1EF45AD27D731DA0000A286 /* ItemCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -188,7 +194,9 @@
 			files = (
 				D1EF458727D3C0EB0000A286 /* LaunchScreen.storyboard in Resources */,
 				D1EF45A727D62C620000A286 /* MazeRoomViewController.storyboard in Resources */,
+				D1EF45B327D760B40000A286 /* File.stringsdict in Resources */,
 				D1EF458427D3C0EB0000A286 /* Assets.xcassets in Resources */,
+				D1EF45AF27D731DA0000A286 /* ItemCollectionViewCell.xib in Resources */,
 				D1EF458227D3C0EA0000A286 /* Main.storyboard in Resources */,
 				D1EF458F27D3C1520000A286 /* MazeRoomView.xib in Resources */,
 			);
@@ -201,12 +209,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1EF459F27D5ABDF0000A286 /* MazeRoomView.swift in Sources */,
 				D1EF457F27D3C0EA0000A286 /* ViewController.swift in Sources */,
 				D1EF45AB27D63DE00000A286 /* ModelDelegate.swift in Sources */,
 				D1EF457B27D3C0EA0000A286 /* AppDelegate.swift in Sources */,
 				D1EF45A127D5AD250000A286 /* MazeRoomViewController.swift in Sources */,
 				D1EF45A427D5B09B0000A286 /* MazeRoomGenerator.swift in Sources */,
+				D1EF45AE27D731DA0000A286 /* ItemCollectionViewCell.swift in Sources */,
 				D1EF45A927D63AE00000A286 /* MazeRoomModel.swift in Sources */,
 				D1EF457D27D3C0EA0000A286 /* SceneDelegate.swift in Sources */,
 			);
