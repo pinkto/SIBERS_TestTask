@@ -40,30 +40,25 @@ class MazeRoomViewController: UIViewController, UIAlertViewDelegate {
     @IBAction func didTapUpButton(_ sender: Any) {
         model.updateCoordinates(buttonTapped: .up)
         configureArtifactButton()
-        print("UP")
     }
     
     @IBAction func didTapDownButton(_ sender: Any) {
         model.updateCoordinates(buttonTapped: .down)
         configureArtifactButton()
-        print("DOWN")
     }
     
     @IBAction func didTapLeftButton(_ sender: Any) {
         model.updateCoordinates(buttonTapped: .left)
         configureArtifactButton()
-        print("LEFT")
     }
     
     @IBAction func didTapRightButton(_ sender: Any) {
         model.updateCoordinates(buttonTapped: .right)
         configureArtifactButton()
-        print("RIGHT")
     }
     
     @IBAction func didTapArtifactButton(_ sender: Any) {
         model.updateArtifactStorage(buttonTapped: .artifact)
-        print("Artifact")
     }
     
     @IBAction func didTapUseButton(_ sender: Any) {

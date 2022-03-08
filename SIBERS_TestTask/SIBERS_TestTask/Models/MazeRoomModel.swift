@@ -29,7 +29,6 @@ class MazeRoomModel {
         self.stepsCounter = 20
     }
     
-    //var buttonTapped: MazeRoomViewController = MazeRoomViewController()
     func updateCoordinates(buttonTapped: ButtonTapped) {
         stepsCounter -= 1
         
